@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""Defines the HBNB console."""
+""" HBNB console."""
 import cmd
+from models.state import State
 from shlex import split
 from models import storage
 from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
-from models.state import State
+from models.review import Review
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
@@ -14,7 +15,7 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the HolbertonBnB command interpreter."""
+    """HolbertonBnB command interpreter."""
 
     prompt = "(hbnb) "
     __classes = {
@@ -41,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
+        """
         Create a new class instance with given keys/values and print its id.
         """
         try:
@@ -76,11 +77,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints the string representation of an instance
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
         """
         try:
             if not line:
@@ -107,11 +103,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
         """
         try:
             if not line:
@@ -138,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, line):
-        """Usage: all or all <class> or <class>.all()
+        """
         Display string representations of all instances of a given class.
         If no class is specified, displays all instantiated objects."""
         if not line:
@@ -158,13 +149,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Updates an instanceby adding or updating attribute
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
-            AttributeError: when there is no attribute given
-            ValueError: when there is no value given
         """
         try:
             if not line:

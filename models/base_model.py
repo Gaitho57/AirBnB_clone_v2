@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Define BaseModel class."""
+"""BaseModel class."""
 
 from uuid import uuid4
 from sqlalchemy import DateTime
@@ -13,7 +13,7 @@ Base = declarative_base()
 
 
 class BaseModel:
-    """Defines the BaseModel class.
+    """Defines  BaseModel class.
     """
 
     id = Column(String(60), primary_key=True, nullable=False)
@@ -39,7 +39,7 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """Return a dictionary representation of the BaseModel instance.
+        """ representation of the BaseModel instance.
         """
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = str(type(self).__name__)
